@@ -229,9 +229,9 @@ label[for='toggle-all'] {
 	position: absolute;
 	top: 0;
 	bottom: 0;
-	left: 34px;
+	right: 76px;
 	padding: 0 4px;
-	background-color: #fcfcfc;
+	color: #a88a8a;
 	/*color: #d00;*/
 	z-index: 10;
 	/* Mobile Safari */
@@ -247,7 +247,7 @@ label[for='toggle-all'] {
 }
 
 #todo-list li .priority-btn:after {
-	content: '!';
+	content: '⚑';
 }
 
 #todo-list li .toggle:after {
@@ -311,7 +311,8 @@ label[for='toggle-all'] {
 }
 
 #todo-list li .destroy:hover,
-#todo-list li .edit-btn:hover {
+#todo-list li .edit-btn:hover,
+#todo-list li .priority-btn:hover {
 	text-shadow: 0 0 1px #000,
 				 0 0 10px rgba(199, 107, 107, 0.8);
 	-webkit-transform: scale(1.3);
