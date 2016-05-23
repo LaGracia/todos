@@ -7,27 +7,28 @@ var app = app || {};
 	// Todo Model
 	// ----------
 
-	// Our basic **Todo** model has `title`, `order`, and `completed` attributes.
+	// Our basic **Todo** model has `title`, `order`, and `completed` attributes 
+	// and an added `priority` attribute.
 	app.Todo = Backbone.Model.extend({
-		// Default attributes for the todo
-		// and ensure that each todo created has `title` and `completed` keys.
+		// Default attributes for every todo created, 
+		// ensuring that each has `title`, `priority, and `completed` keys.
 		defaults: {
 			title: '',
-			completed: false,
-			priority: false
-		},
-
-		// Toggle the `completed` state of this todo item.
-		toggle: function () {
-			this.save({
-				completed: !this.get('completed')
-			});
+			priority: false,
+			completed: false
 		},
 
 		// Toggle the `priority` state of this todo item.
 		togglePriority: function () {
 			this.save({
 				priority: !this.get('priority')
+			});
+		},
+
+		// Toggle the `completed` state of this todo item.
+		toggle: function () {
+			this.save({
+				completed: !this.get('completed')
 			});
 		}
 	});
