@@ -3,7 +3,7 @@
 
 	<head>
 		<meta charset="utf-8">
-		<title>Backbone.js • TodoMVC</title>
+		<title>todos</title>
 		<link rel="stylesheet" href="bower_components/todomvc-common/base.css">
 	</head>
 
@@ -11,26 +11,30 @@
 
 		<section id="todoapp">
 			<header id="header">
-				<h1>todos</h1>
-				<input id="new-todo" placeholder="What needs to be done?" autofocus>
+				<input id="new-todo" placeholder="todos" autofocus>
 			</header>
 			<section id="main">
 				<input id="toggle-all" type="checkbox">
-				<label for="toggle-all">Mark all as complete</label>
+				<label for="toggle-all">Check All</label>
 				<ul id="todo-list"></ul>
 			</section>
 			<footer id="footer"></footer>
 		</section>
 
 		<footer id="info">
-			<p>Double-clicking will also edit a todo</p>
-			<p>Written by <a href="https://github.com/addyosmani">Addy Osmani</a></p>
-			<p>Extra features added by <a href="https://github.com/LaGracia">La Gracia</a></p>
-			<p>Part of <a href="http://todomvc.com">TodoMVC</a></p>
+			<p>
+				Hit the main checkbox to mark all as completed. Choose the pencil or double-click on a todo to edit.
+			</p>
+			<p>
+				Written by <a href="https://github.com/addyosmani">Addy Osmani</a>. Part of <a href="http://todomvc.com">TodoMVC</a>. Customized by <a href="https://github.com/LaGracia">La Gracia</a>.
+			</p>
 		</footer>
 
-		<!-- The following scripts are HTML snippets that the JS 
-			libraries can use to display the app's elements. -->
+		<!-- The following scripts are HTML snippets that the JS libraries 
+			can use to display the app's elements. Setting the type to 
+			something other than "text/javascript" prevents the document 
+			from trying to execute the code. See detailed explanation at 
+			<https://miguelmota.com/blog/getting-started-with-backbonejs/>. -->
 
 		<!-- Template for the list input element. -->
 		<script type="text/template" id="item-template">

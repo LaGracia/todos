@@ -22,7 +22,8 @@ button {
 body {
 	font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
 	line-height: 1.4em;
-	background: #eaeaea url('bg.png');
+	/* background image from http://subtlepatterns.com */
+	background: #eaeaea url('symphony.png');
 	color: #4d4d4d;
 	width: 550px;
 	margin: 0 auto;
@@ -41,7 +42,7 @@ input[type="checkbox"] {
 #todoapp {
 	background: #fff;
 	background: rgba(255, 255, 255, 0.9);
-	margin: 130px 0 40px 0;
+	margin: 50px 0 40px 0;
 	border: 1px solid #ccc;
 	position: relative;
 	border-top-left-radius: 2px;
@@ -62,21 +63,9 @@ input[type="checkbox"] {
 }
 
 #todoapp input::-webkit-input-placeholder {
-	font-style: italic;
-}
-
-#todoapp input::-moz-placeholder {
-	font-style: italic;
-	color: #a9a9a9;
-}
-
-#todoapp h1 {
-	position: absolute;
-	top: -120px;
-	width: 100%;
-	font-size: 70px;
+	font-size: 44px;
 	font-weight: bold;
-	text-align: center;
+	text-align: right;
 	color: #b3b3b3;
 	color: rgba(255, 255, 255, 0.3);
 	text-shadow: -1px -1px rgba(0, 0, 0, 0.2);
@@ -85,6 +74,13 @@ input[type="checkbox"] {
 	-ms-text-rendering: optimizeLegibility;
 	-o-text-rendering: optimizeLegibility;
 	text-rendering: optimizeLegibility;
+}
+
+#todoapp input::-moz-placeholder {
+	font-size: 44px;
+	font-weight: bold;
+	text-align: right;
+	color: #a9a9a9;
 }
 
 #header {
@@ -164,8 +160,9 @@ label[for='toggle-all'] {
 }
 
 #toggle-all:before {
-	content: '»';
-	font-size: 28px;
+	content: '✔';
+	font-size: 30px;
+	line-height: 42px;
 	color: #d9d9d9;
 	padding: 0 25px 7px;
 }
@@ -223,33 +220,6 @@ label[for='toggle-all'] {
 	appearance: none;
 }
 
-#todo-list li .priority-btn {
-	display: none;
-	height: auto;
-	position: absolute;
-	top: 0;
-	bottom: 0;
-	right: 76px;
-	padding: 0 4px;
-	color: #a88a8a;
-	/*color: #d00;*/
-	z-index: 10;
-	/* Mobile Safari */
-	border: none;
-	-webkit-appearance: none;
-	-ms-appearance: none;
-	-o-appearance: none;
-	appearance: none;
-}
-
-#todo-list li:hover .priority-btn {
-	display: block;
-}
-
-#todo-list li .priority-btn:after {
-	content: '⚑';
-}
-
 #todo-list li .toggle:after {
 	content: '✔';
 	/* 40 + a couple of pixels visual adjustment */
@@ -291,7 +261,8 @@ label[for='toggle-all'] {
 }
 
 #todo-list li .destroy,
-#todo-list li .edit-btn {
+#todo-list li .edit-btn,
+#todo-list li .priority-btn {
 	display: none;
 	position: absolute;
 	top: 0;
@@ -300,7 +271,7 @@ label[for='toggle-all'] {
 	width: 40px;
 	height: 40px;
 	margin: auto 0;
-	font-size: 22px;
+	font-size: 20px;
 	color: #a88a8a;
 	-webkit-transition: all 0.2s;
 	transition: all 0.2s;
@@ -308,6 +279,10 @@ label[for='toggle-all'] {
 
 #todo-list li .edit-btn {
 	right: 40px;
+}
+
+#todo-list li .priority-btn {
+	right: 70px;
 }
 
 #todo-list li .destroy:hover,
@@ -319,16 +294,29 @@ label[for='toggle-all'] {
 	transform: scale(1.3);
 }
 
+#todo-list li .destroy:hover {
+	color: #d66;
+}
+
 #todo-list li .destroy:after {
 	content: '✖';
+	font-size: 24px;
 }
 
 #todo-list li .edit-btn:after {
 	content: '✎';
+	font-size: 20px;
+}
+
+#todo-list li .priority-btn:after {
+	content: '⚑';
+	line-height: 30px;
+	font-size: 20px;
 }
 
 #todo-list li:hover .destroy,
-#todo-list li:hover .edit-btn {
+#todo-list li:hover .edit-btn,
+#todo-list li:hover .priority-btn {
 	display: block;
 }
 
@@ -341,7 +329,7 @@ label[for='toggle-all'] {
 }
 
 #footer {
-	color: #777;
+	color: gray;
 	padding: 0 15px;
 	position: absolute;
 	right: 0;
@@ -373,7 +361,7 @@ label[for='toggle-all'] {
 }
 
 #filters {
-	margin: 0;
+	margin: 0 0 0 -70px;
 	padding: 0;
 	list-style: none;
 	position: absolute;
@@ -399,12 +387,21 @@ label[for='toggle-all'] {
 	float: right;
 	position: relative;
 	line-height: 20px;
+	font-weight: bold;
+	color: #85ada7;
 	text-decoration: none;
 	background: rgba(0, 0, 0, 0.1);
-	font-size: 11px;
+	font-size: 12px;
 	padding: 0 10px;
 	border-radius: 3px;
 	box-shadow: 0 -1px 0 0 rgba(0, 0, 0, 0.2);
+}
+
+/* https://css-tricks.com/snippets/css/css-hacks-targeting-firefox/ */
+@-moz-document url-prefix() {
+	#clear-completed {
+	line-height: 18px;
+	}
 }
 
 #clear-completed:hover {
@@ -414,7 +411,7 @@ label[for='toggle-all'] {
 
 #info {
 	margin: 65px auto 0;
-	color: #a6a6a6;
+	color: gray;
 	font-size: 12px;
 	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.7);
 	text-align: center;
@@ -441,12 +438,12 @@ label[for='toggle-all'] {
 
 	#toggle-all {
 		top: -56px;
-		left: -15px;
+		left: -20px;
 		width: 65px;
 		height: 41px;
-		-webkit-transform: rotate(90deg);
+/*		-webkit-transform: rotate(90deg);
 		transform: rotate(90deg);
-		-webkit-appearance: none;
+*/		-webkit-appearance: none;
 		appearance: none;
 	}
 }

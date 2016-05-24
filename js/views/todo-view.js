@@ -33,7 +33,6 @@ var app = app || {};
 		// convenience.
 		initialize: function () {
 			this.listenTo(this.model, 'change', this.render);
-			this.listenTo(this.model, 'togglePriority', this.togglePriority);
 			this.listenTo(this.model, 'edit', this.edit);
 			this.listenTo(this.model, 'destroy', this.remove);
 			this.listenTo(this.model, 'visible', this.toggleVisible);
@@ -56,26 +55,55 @@ var app = app || {};
 			this.$el.toggleClass('priority', this.model.get('priority'));
 			this.$el.toggleClass('completed', this.model.get('completed'));
 			this.toggleVisible();
+			this.isHidden();
 			this.$input = this.$('.edit');
 			return this;
 		},
 
+		// Set an item's class to "hidden" and call the next function
 		toggleVisible: function () {
 			this.$el.toggleClass('hidden', this.isHidden());
 		},
 
+		// https://github.com/eferdman/TodoMVC-Backbone
+		isHidden: function () {
+			
+			// If `completed` view is on
+			if (this.model.get('completed')) {
+
+				//  Hide items if they are `active` or `priority` class 
+				return (app.TodoFilter === 'active') || (app.TodoFilter === 'priority');
+
+			} else {
+
+				// If `completed` view is off and `priority` view is on
+				if (this.model.get('priority')) {
+
+					// Hide `completed` items (`active` items already hidden)
+					return app.TodoFilter === 'completed';
+				
+				// If `completed` and `priority` are off (i.e.,`active` is on)
+				} else {
+					
+					// Hide items if they are `completed` or `priority` class
+					return (app.TodoFilter === 'completed') || (app.TodoFilter === 'priority');
+				}
+			}
+		},
+/*
+		// If completed items are hidden, show active items; and vice versa
 		isHidden: function () {
 			return this.model.get('completed') ?
 				app.TodoFilter === 'active' :
 				app.TodoFilter === 'completed';
 		},
-
-		// Toggle the `"priority"` state of the model.
+*/
+		// Toggle the `"priority"` state of the model on icon click.
 		togglePriority: function () {
 			this.model.togglePriority();
 		},
 
-		// Toggle the `"completed"` state of the model.
+		// Toggle the `"completed"` state of the model on icon click.
 		toggleCompleted: function () {
 			this.model.toggle();
 		},
